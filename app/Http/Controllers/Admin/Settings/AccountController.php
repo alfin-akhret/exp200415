@@ -24,4 +24,30 @@ class AccountController extends Controller {
 		User::create($request->all());
 		return redirect('admin/settings/accounts');
 	}
+
+	// display edit form
+	public function edit($id) {
+		$user = User::findOrFail($id);
+		return view('admin.settings.accounts.update', compact('user'));
+	}
+
+	// update account
+	public function update($id, AccountRequest $request) {
+		$user = User::findOrFail($id);
+		$user->update($request->all());
+
+		return redirect('admin/settings/accounts');
+	}
+
+	// delete confirmation
+	public function confirmDelete($id) {
+		$this->destroy($id); // temporary ... dangerous
+		return redirect('admin/settings/accounts');
+	}
+
+	// delete account
+	public function destroy($id) {
+		$user = User::findOrFail($id);
+		$user->delete();
+	}
 }
