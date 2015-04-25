@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['username', 'email', 'password'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -30,6 +30,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+	// mutator
+	// encrypt the password before insert
+	public function setPasswordAttribute($value) {
+		$this->attributes['password'] = bcrypt($value);
+	}
+	
 
 	// relationship
 	// user has many articles
