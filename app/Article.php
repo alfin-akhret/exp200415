@@ -8,7 +8,8 @@ class Article extends Model {
 	protected $fillable = [
 		'title',
 		'body',
-		'published_at'
+		'published_at',
+		'user_id',
 	];
 
 	protected $dates = ['published_at']; // use this to carbonize non-carbon date property
@@ -25,6 +26,12 @@ class Article extends Model {
 
 	public function scopeUnpublished($query) {
 		$query->where('published_at', '>=', Carbon::now());
+	}
+
+	// relationship
+	// article belong to user
+	public function user() {
+		return $this->belongsTo('JunkApp\User');
 	}
 
 

@@ -1,7 +1,7 @@
 <?php namespace JunkApp\Http\Controllers\Frontend;
 
 use JunkApp\Article;
-use JunkApp\Http\Requests\CreateArticleRequest;
+use JunkApp\Http\Requests\ArticleRequest;
 use JunkApp\Http\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -25,10 +25,19 @@ class ArticleController extends Controller {
 		return view('articles.create');
 	}
 
-	public function store(CreateArticleRequest $request){
-
-
+	public function store(ArticleRequest $request){
 		Article::create($request->all());
+		return redirect('articles');
+	}
+
+	public function edit($id) {
+		$article = Article::findOrFail($id);
+		return view('articles.edit', compact('article'));
+	}
+
+	public function update($id, ArticleRequest $request) {
+		$article = Article::findOrFail($id);
+		$article->update($request->all());
 
 		return redirect('articles');
 	}
