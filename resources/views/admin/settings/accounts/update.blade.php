@@ -11,6 +11,9 @@
 			{!! Form::label('email') !!}
 			{!! Form::text('email') !!}
 			<br>
+			{!! Form::label('usergroup_id', 'usergroup') !!}
+			{!! Form::select('usergroup_id', $usergroups) !!}
+			<br>
 			{!! Form::label('password') !!}
 			{!! Form::password('password') !!}
 			<br>

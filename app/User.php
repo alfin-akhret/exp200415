@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['username', 'email', 'password'];
+	protected $fillable = ['username', 'email', 'usergroup_id', 'password'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -36,7 +36,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function setPasswordAttribute($value) {
 		$this->attributes['password'] = bcrypt($value);
 	}
-	
+
 
 	// relationship
 	// user has many articles

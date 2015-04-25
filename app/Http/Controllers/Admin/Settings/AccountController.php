@@ -1,6 +1,7 @@
 <?php namespace JunkApp\Http\Controllers\Admin\Settings;
 
 use JunkApp\User;
+use JunkApp\Usergroup;
 use JunkApp\Http\Requests\AccountRequest;
 use JunkApp\Http\Controllers\Controller;
 
@@ -16,7 +17,8 @@ class AccountController extends Controller {
 
 	// display 'create new user form'
 	public function create() {
-		return view('admin.settings.accounts.create');
+		$usergroups = Usergroup::all()->lists('name', 'id'); // biar bisa di jadiin drop down di view.. urutannya (text, value);
+		return view('admin.settings.accounts.create', compact('usergroups'));
 	}
 
 	// store a new account
@@ -28,7 +30,8 @@ class AccountController extends Controller {
 	// display edit form
 	public function edit($id) {
 		$user = User::findOrFail($id);
-		return view('admin.settings.accounts.update', compact('user'));
+		$usergroups = Usergroup::all()->lists('name', 'id'); // biar bisa di jadiin drop down di view.. urutannya (text, value);
+		return view('admin.settings.accounts.update', compact('user', 'usergroups'));
 	}
 
 	// update account

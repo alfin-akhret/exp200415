@@ -2,7 +2,7 @@
 
 use JunkApp\Http\Requests\Request;
 
-class AccountRequest extends Request {
+class UsergroupRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,20 +21,9 @@ class AccountRequest extends Request {
 	 */
 	public function rules()
 	{
-		$create =  [
-			'username' => 'required|alpha_num|min:5',
-			'email' => 'required|unique:users|email',
-			'password' => 'required|alpha_num|min:3|confirmed',
+		return [
+			'name' => 'required|unique:usergroups|alpha_num'
 		];
-
-		$update = $create;
-		$update['email'] = 'required|email';
-
-		if(Request::isMethod('PATCH')) {
-			return $update;
-		}
-
-		return $create;
 	}
 
 }
