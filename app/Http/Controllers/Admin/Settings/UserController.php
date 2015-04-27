@@ -2,7 +2,7 @@
 
 use JunkApp\User;
 use JunkApp\Usergroup;
-use JunkApp\Http\Requests\AccountRequest;
+use JunkApp\Http\Requests\UserRequest;
 use JunkApp\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class UserController extends Controller {
 	}
 
 	// store a new account
-	public function store(AccountRequest $request) {
+	public function store(UserRequest $request) {
 		User::create($request->all());
 		return redirect('admin/settings/users');
 	}
@@ -35,7 +35,7 @@ class UserController extends Controller {
 	}
 
 	// update account
-	public function update($id, AccountRequest $request) {
+	public function update($id, UserRequest $request) {
 		$user = User::findOrFail($id);
 		$user->update($request->all());
 
