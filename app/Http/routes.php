@@ -16,17 +16,17 @@ Route::group(['namespace' => 'Frontend'], function(){
 });
 
 // Route for Administrator Dashboard
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){ 
 
 	// Route for application settings
 	Route::group(['namespace' => 'Settings', 'prefix' => 'settings'], function(){
 	
 		// Account settings
-		Route::get('accounts/{id}/delete', [
-			'as' => 'admin.settings.accounts.delete',
-			'uses' => 'AccountController@confirmDelete'
+		Route::get('users/{id}/delete', [									// acount sounds lil bit odd... lets change that to user instead
+			'as' => 'admin.settings.users.delete',
+			'uses' => 'UserController@confirmDelete'
 		]);
-		Route::resource('accounts', 'AccountController');
+		Route::resource('users', 'UserController');
 	
 	});
 });
