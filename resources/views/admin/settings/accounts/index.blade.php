@@ -2,7 +2,6 @@
 
 @section('content')
 	<a href="{{ url('admin/settings/accounts/create') }}">Create new user</a> <br>
-	<a href="{{ url('admin/settings/usergroups/create') }}">Create new user group</a>  
 	<ul>
 		@foreach($users as $user)
 			<li>{{ $user->id }} {{ $user->username }} <a href="{{ URL::route('admin.settings.accounts.edit', $user->id) }}">Edit</a> <a href="{{ URL::route('admin.settings.accounts.delete', $user->id) }}">Delete</a></li>

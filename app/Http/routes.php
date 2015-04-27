@@ -28,8 +28,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 		]);
 		Route::resource('accounts', 'AccountController');
 	
-		// usergroups
-		Route::resource('usergroups', 'UsergroupController');
-
 	});
 });
